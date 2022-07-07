@@ -11,9 +11,9 @@ const {textDetect} = require('./textDetection');
 const app = express();
 
 // 파일 업로드 허용
-app.use(fileUpload({
-    createParentPath: true
-}));
+// app.use(fileUpload({
+//     createParentPath: true
+// }));
 
 let uploads =  multer({
     dest: './uploads'
