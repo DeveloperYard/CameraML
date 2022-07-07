@@ -17,7 +17,7 @@ app.use(fileUpload({
 // 미들 웨어 추가
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencodedls({extended:true}));
 app.use(morgan('dev'));
 
 // app.get('/', (req, res, next)=>{
@@ -31,10 +31,6 @@ app.use(morgan('dev'));
 
 app.get('/', (req, res, next)=>{
     res.status(200).sendFile(path.join(__dirname, '/templates/index.html'));
-})
-
-app.post('/method', (req, res, next)=>{
-    res.status(200).json({message : '왜 일로오냐?'});
 })
 
 app.post('/upload', async (req, res) => {
