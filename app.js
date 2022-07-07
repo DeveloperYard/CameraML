@@ -1,5 +1,6 @@
 const express = require('express');
-const fileUpload = require('express-fileupload');
+// const fileUpload = require('express-fileupload');
+const multer = require('multer')
 const cors = require('cors');
 const morgan = require('morgan')
 const _ = require('lodash')
@@ -13,6 +14,10 @@ const app = express();
 app.use(fileUpload({
     createParentPath: true
 }));
+
+let uploads =  multer({
+    dest: './uploads'
+})
 
 // 미들 웨어 추가
 app.use(cors());
@@ -48,7 +53,7 @@ app.post('/upload', async (req, res) => {
         } else {
             let f = req.files.uploadFile;
             // console.log(req.files); -> 파일이 어떤 형식으로 되어있는지 확인하고 싶을 때 확인!
-            f.mv('./uploads/' + f.name);
+            uploads.single(f.name);
             let detectedNum = await textDetect(`./uploads/${f.name}`);
             res.status(200).json({
                 status: true,
