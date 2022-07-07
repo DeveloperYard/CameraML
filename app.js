@@ -17,7 +17,7 @@ app.use(fileUpload({
 // 미들 웨어 추가
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencodedls({extended:true}));
+app.use(express.urlencoded({extended:true}));
 app.use(morgan('dev'));
 
 // app.get('/', (req, res, next)=>{
@@ -33,6 +33,10 @@ app.get('/', (req, res, next)=>{
     res.status(200).sendFile(path.join(__dirname, '/templates/index.html'));
 })
 
+// app.post('/method', (req, res, next)=>{
+//     res.status(200).json({message : '왜 일로오냐?'});
+// })
+
 app.post('/upload', async (req, res) => {
     try {
         if (!req.files) { 
@@ -45,7 +49,7 @@ app.post('/upload', async (req, res) => {
             let f = req.files.uploadFile;
             // console.log(req.files); -> 파일이 어떤 형식으로 되어있는지 확인하고 싶을 때 확인!
             f.mv('./uploads/' + f.name);
-            let detectedNum = await textDetect(`src/uploads/${f.name}`);
+            let detectedNum = await textDetect(`./uploads/${f.name}`);
             res.status(200).json({
                 status: true,
                 detectionValue: detectedNum,

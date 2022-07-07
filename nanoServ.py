@@ -7,11 +7,14 @@ app = Flask(__name__)
 @app.route('/upload', methods=['GET'])
 def uploadFile():
   try:
-    url = 'https://image-processd.cyclic.app/upload'
-    file = open('/Users/seungwookim/ML/asset/images/apartment_num_test2.jpg', 'rb')
+    url = 'http://localhost:8080/upload'
+    # file = open('/Users/seungwookim/ML/images/apartment_num_test1.jpg', 'rb')
+    file = open('/Users/seungwookim/ML/images/apartment_num_test1.jpg', 'rb')
     # file = open('Image path', 'rb')
     uploadFile = {'uploadFile': file}
+    print(uploadFile)
     r = requests.post(url, files=uploadFile)
+    print(r.text)
     resContent = int(r.json()['detectionValue'])
     # key value detection
     print(resContent)
