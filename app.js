@@ -30,7 +30,7 @@ app.use(morgan('dev'));
 // }) -> implemented at python server
 
 app.get('/', (req, res, next)=>{
-    res.status(200).sendFile(path.join(__dirname, '../templates/index.html'));
+    res.status(200).sendFile(path.join(__dirname, '/templates/index.html'));
 })
 
 app.post('/method', (req, res, next)=>{
@@ -49,7 +49,7 @@ app.post('/upload', async (req, res) => {
             let f = req.files.uploadFile;
             // console.log(req.files); -> 파일이 어떤 형식으로 되어있는지 확인하고 싶을 때 확인!
             f.mv('./uploads/' + f.name);
-            let detectedNum = await textDetect(`./uploads/${f.name}`);
+            let detectedNum = await textDetect(`src/uploads/${f.name}`);
             res.status(200).json({
                 status: true,
                 detectionValue: detectedNum,
@@ -67,38 +67,39 @@ app.post('/upload', async (req, res) => {
     }
 })
 
-app.post('/upload-multi', async(req, res) => {
-    try {
-        if (!req.files) {
-            res.send({
-                status: false,
-                message: "파일 업로드 실패"
-            })
-        } 
-        else {
-            let data = [];
-            // req.files는 잘 받아와짐!            
-            _.forEach(_.keysIn(req.files.photos), (key) => {
-                let photo = req.files.photos[key];
-                photo.mv('./uploads/' + photo.name)
-                data.push({
-                    name: photo.name,
-                    minetype: photo.minetype,
-                    size: photo.size
-                });
-            });
+// 여러 파일 업로드할 때 사용하려고 하나, 필요 없을 것 같음!
+// app.post('/upload-multi', async(req, res) => {
+//     try {
+//         if (!req.files) {
+//             res.send({
+//                 status: false,
+//                 message: "파일 업로드 실패"
+//             })
+//         } 
+//         else {
+//             let data = [];
+//             // req.files는 잘 받아와짐!            
+//             _.forEach(_.keysIn(req.files.photos), (key) => {
+//                 let photo = req.files.photos[key];
+//                 photo.mv('./uploads/' + photo.name)
+//                 data.push({
+//                     name: photo.name,
+//                     minetype: photo.minetype,
+//                     size: photo.size
+//                 });
+//             });
 
-            // return response
-            res.send({
-                status: true,
-                message: '파일들이 업로드 되었습니다.',
-                data: data
-            });
-        }
-    } catch (err) {
-        res.status(500).send(err);
-    }
-})
+//             // return response
+//             res.send({
+//                 status: true,
+//                 message: '파일들이 업로드 되었습니다.',
+//                 data: data
+//             });
+//         }
+//     } catch (err) {
+//         res.status(500).send(err);
+//     }
+// })
 // 포트 설정
 const port = 8080;
 
