@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "striped-proxy-350206",
+  "private_key_id": "996055063208a665f719d65337b96f3b5ec9bf80",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCoM7DxrNJxmw4/\nvaSqa1WOStFxzrtNC4wJFWHmPvCXt/A9+veu4wOel6YxN89WU03ETaNg2k1o0hOu\nvqiBz76OOfXgeTdEY8+FWLcrpMcA7XGS3mVMvH2PGEEmBSKQwIt/5tvLCZJ6/Hyo\nwQlgfWErKkmCIK6n5GMzVlkkl16ymGBhEOudtE0T89VZboyoSt81RUMPj85rouBD\nk+iNmYd+EQFrxG2ha1aiThzdCwpOjyGul6XX4ZMaKVcNp39jecRlJS9SSgV6sqG0\nNejuHagzxhpBsLgK0TxoJDht+YFfNeMa8aVYZC/YFOppG+ki7eET3KE9FjrlBq+1\n8g5b9IVRAgMBAAECggEACqarT8J32QXOky65HKmLU2Vdee1zYt+WUITwHBpkNddJ\n+ULJKGPruME1nuw/zuGbjRC1hc6NFFQpNumP1hiHoo39CefjHguL+o+xmavnhiGD\nDZ/TnlZZRRRuG7A7jhsDOmguBt9mTS9r3WvL4jZOTuNwoDLdnHgT6A5RusVzE7AE\nLfIBPm2a84oOK756xqtEIgyipkikOInoplbHBCt+FCx8ambuQX7YrAElRM1fSlVJ\ngRTFmG6zPqh86b9RLcst8oLlKil5V6otf3uJxsIyFP9TAuok4lo0sY6n2gz6e9DD\nmV1aj5K4dnDLyVa2miBot09BPyHX1FScEw5hFjM3GQKBgQDXWS0V5j3Oj9m8ca3J\njqMXCpvkhs1zsQ75Y5g7FsyYGAM0YFkWXEv8xsXS4sIkc6CCa96D7PyWpqR8adR5\nC5bBaMGfKB6QfHHxdjrLuDdg8yTG7pSZp8jqM4z+pDWTxFVx1W+OYfuiON7s1+/T\nDdyORT0En3uABTieCbAYy+0TJwKBgQDH9COLqnTOJQrRHUHHWPGCgLqZNAubbVaD\nDO0ox3SVmnPq+DaerU4ZZ3L9fUSS92VRRBAxQ9QamA3TOReQNNObH95W+kLttKDZ\nGYWVumeFmxl9oIRht9iiaa501yluezdVYZQbWMgKxj4ef9587InuRmvCttQppyZB\nj/olpH2OxwKBgQCE2Ilcoh1syQbsHkC0P17SvwOudY5WmVqAdHUbtpPeG6oWbH1o\nsuVZeZHd528Wp5HUAxFQ1yh3EzQTYAHn7kNA6wvO0CQSxAJSj7nzpJ/dGgGNCu72\n3y+tcsG+8LPwhUSkpaNc9YsS5vx2pTtYOovd5E6hBHVeY1oq/BT7JwoILwKBgGL9\nZb+WQr9vrTw7jL4hNWdTTY3dK0XmSmcUtjBzFi+eSHbyLTA/QiPniBEgvBs6KUmj\nNZT+LHqB/o4sfJLi5EOu8kcDHLFLtDnmnbCzmN6XG3aLSh6KgtBdG4YyowtUKt+1\nMDqdqGNVI5m72izkeaCh8mVyV/TLEHBy0/dgyNwvAoGAYyI2Ag9u6IxezEmReITQ\nfRkW8ULy6zPE12V016H23oxC79qFO/8wCkkevMVfmGhixP5yilx5pdHej/5JVOGC\nmsviD5m3U7F8fWXWiuiznyzTx5UFMPHn2z9bAZxkE8y+lbcaNnIQydLHmV3eegdI\n5emqXlwe9HLWrHjPctHCaiE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "capstone-vision-test@striped-proxy-350206.iam.gserviceaccount.com",
+  "client_id": "106496361984053481815",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/capstone-vision-test%40striped-proxy-350206.iam.gserviceaccount.com"
+}
