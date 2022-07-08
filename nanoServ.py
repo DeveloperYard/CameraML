@@ -7,8 +7,8 @@ app = Flask(__name__)
 @app.route('/upload', methods=['GET'])
 def uploadFile():
   try:
-    # url = 'https://image-processed.cyclic.app/upload'
-    url = 'http://localhost:8080/upload'
+    url = 'https://image-processed.cyclic.app/upload'
+    # url = 'http://localhost:8080/upload'
     # file = open('/Users/seungwookim/ML/images/apartment_num_test1.jpg', 'rb')
     file = open('/Users/seungwookim/ML/images/apartment_num_test1.jpg', 'rb')
     # file = open('Image path', 'rb')
