@@ -44,6 +44,7 @@ app.get('/', (req, res, next)=>{
 
 app.post('/upload', async (req, res) => {
     try {
+        print(req)
         if (!req.files) { 
             console.log(req.files);
             res.status(404).send({
