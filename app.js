@@ -1,5 +1,5 @@
 const express = require('express');
-// const fileUpload = require('express-fileupload');
+const fileUpload = require('express-fileupload');
 const multer = require('multer')
 const cors = require('cors');
 const morgan = require('morgan')
@@ -11,18 +11,16 @@ const {textDetect} = require('./textDetection');
 const app = express();
 
 // 파일 업로드 허용
-// app.use(fileUpload({
-//     createParentPath: true
-// }));
+app.use(fileUpload({
+    createParentPath: true
+}));
 
-let uploads =  multer({
-    dest: './uploads'
-})
+let upload = multer({ dest: './uploads' }); // 3-1
 
 // 미들 웨어 추가
 app.use(cors());
-app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 app.use(morgan('dev'));
 
 // app.get('/', (req, res, next)=>{
@@ -38,13 +36,17 @@ app.get('/', (req, res, next)=>{
     res.status(200).sendFile(path.join(__dirname, '/templates/index.html'));
 })
 
+app.post('/', (req, res, next)=>{
+    console.log(req.body.num);
+    res.status(200).json({message: req.body.num});
+})
+
 // app.post('/method', (req, res, next)=>{
 //     res.status(200).json({message : '왜 일로오냐?'});
 // })
 
-app.post('/upload', async (req, res) => {
+app.post('/upload', async (req, res, next) => {
     try {
-        print(req)
         if (!req.files) { 
             console.log(req.files);
             res.status(404).send({
@@ -54,7 +56,7 @@ app.post('/upload', async (req, res) => {
         } else {
             let f = req.files.uploadFile;
             // console.log(req.files); -> 파일이 어떤 형식으로 되어있는지 확인하고 싶을 때 확인!
-            uploads.single(f.name);
+            upload.single(f.name);
             let detectedNum = await textDetect(`./uploads/${f.name}`);
             res.status(200).json({
                 status: true,
@@ -73,6 +75,9 @@ app.post('/upload', async (req, res) => {
     }
 })
 
+app.use((err, req, res, next)=>{
+    console.error(err);
+})
 // 여러 파일 업로드할 때 사용하려고 하나, 필요 없을 것 같음!
 // app.post('/upload-multi', async(req, res) => {
 //     try {
