@@ -27,17 +27,17 @@ const app = express();
 //     }
 // });
 
-let storage = multer.diskStorage({
-    destination: function(req, file ,cb){
-        cb(null, './uploads');
-    }
-    ,
-    filename: function(req, file, cb){
-        cb(null, file.originalname);
-    }  
-});
+// let storage = multer.diskStorage({
+//     destination: function(req, file ,cb){
+//         cb(null, './uploads');
+//     }
+//     ,
+//     filename: function(req, file, cb){
+//         cb(null, file.originalname);
+//     }  
+// });
 
-const upload = multer({storage: storage});
+const upload = multer({storage: multer.memoryStorage()});
 
 // 미들 웨어 추가
 app.use(cors());
@@ -77,17 +77,18 @@ app.post('/upload', upload.single('uploadFile'), async (req, res, next) => {
             });
         } else {
             let f = req.file;
+            console.log(f);
             // console.log(req.files); -> 파일이 어떤 형식으로 되어있는지 확인하고 싶을 때 확인!
-            let detectedNum = await textDetect(`./uploads/${f.filename}`);
+            let detectedNum = await textDetect(req.file.buffer);
             res.status(200).json({
-                status: true,
+                // status: true,
                 detectionValue: detectedNum,
                 message: '파일이 업로드 되었습니다.',
-                data: {
-                    name: f.name,
-                    minetype: f.minetype,
-                    size: f.size
-                }
+                // data: {
+                //     name: f.name,
+                //     minetype: f.minetype,
+                //     size: f.size
+                // }
             });
         }
     } catch (err) {

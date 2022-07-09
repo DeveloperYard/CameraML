@@ -10,9 +10,11 @@ def uploadFile():
     url = 'https://image-processed.cyclic.app/upload'
     # url = 'http://localhost:8080/upload'
     # file = open('/Users/seungwookim/ML/images/apartment_num_test1.jpg', 'rb')
-    file = open('/Users/seungwookim/ML/images/apartment_num_test1.jpg', 'rb')
+    file = open('/Users/seungwookim/ML/images/apartment_num_test2.jpg', 'rb')
     # file = open('Image path', 'rb')
-    uploadFile = {'uploadFile': file}
+    uploadFile = {
+      'uploadFile': file,
+      }
     print(uploadFile)
     r = requests.post(url, files=uploadFile)
     print(r.text)
