@@ -1,26 +1,48 @@
 const express = require('express');
-const fileUpload = require('express-fileupload');
-const multer = require('multer')
+// const fileUpload = require('express-fileupload');
+const fs = require('fs');
+const multer = require('multer');
 const cors = require('cors');
 const morgan = require('morgan')
 const _ = require('lodash')
 const path = require('path');
 
 const {textDetect} = require('./textDetection');
+const { fstat } = require('fs');
 
 const app = express();
 
+// -> express-fileupload 사용 시 모듈을 찾을 수 없다고 뜸!
 // 파일 업로드 허용
-app.use(fileUpload({
-    createParentPath: true
-}));
+// app.use(fileUpload({
+//     createParentPath: true
+// }));
 
-let upload = multer({ dest: './uploads' }); // 3-1
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, './uploads')
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, file.fieldname);
+//     }
+// });
+
+let storage = multer.diskStorage({
+    destination: function(req, file ,cb){
+        cb(null, './uploads');
+    }
+    ,
+    filename: function(req, file, cb){
+        cb(null, file.originalname);
+    }  
+});
+
+const upload = multer({storage: storage});
 
 // 미들 웨어 추가
 app.use(cors());
-app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 app.use(morgan('dev'));
 
 // app.get('/', (req, res, next)=>{
@@ -45,19 +67,18 @@ app.post('/', (req, res, next)=>{
 //     res.status(200).json({message : '왜 일로오냐?'});
 // })
 
-app.post('/upload', async (req, res, next) => {
+app.post('/upload', upload.single('uploadFile'), async (req, res, next) => {
     try {
-        if (!req.files) { 
-            console.log(req.files);
+        if (!req.file) { 
+            console.log(req.file);
             res.status(404).send({
                 status: false,
                 message: '파일 업로드 실패'
             });
         } else {
-            let f = req.files.uploadFile;
+            let f = req.file;
             // console.log(req.files); -> 파일이 어떤 형식으로 되어있는지 확인하고 싶을 때 확인!
-            upload.single(f.name);
-            let detectedNum = await textDetect(`./uploads/${f.name}`);
+            let detectedNum = await textDetect(`./uploads/${f.filename}`);
             res.status(200).json({
                 status: true,
                 detectionValue: detectedNum,
