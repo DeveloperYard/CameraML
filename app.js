@@ -45,15 +45,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(morgan('dev'));
 
-// app.get('/', (req, res, next)=>{
-//     try{
-//         res.sendFile(__dirname + '/html/index.html');
-//     }
-//     catch(err) {
-//         console.log(err);
-//     }
-// }) -> implemented at python server
-
 app.get('/', (req, res, next)=>{
     res.status(200).sendFile(path.join(__dirname, '/templates/index.html'));
 })
@@ -62,10 +53,6 @@ app.post('/', (req, res, next)=>{
     console.log(req.body.num);
     res.status(200).json({message: req.body.num});
 })
-
-// app.post('/method', (req, res, next)=>{
-//     res.status(200).json({message : '왜 일로오냐?'});
-// })
 
 app.post('/upload', upload.single('uploadFile'), async (req, res, next) => {
     try {

@@ -5,9 +5,10 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 
 @app.route('/upload', methods=['GET'])
+# 해당 파이썬 서버의 주소로 GET 요청을 보내면 아래 url로 POST 요청을 보낸다고 인식하면 됨
 def uploadFile():
   try:
-    url = 'https://image-processed.cyclic.app/upload'
+    url = 'http://localhost:8080/upload'
     # url = 'http://localhost:8080/upload'
     # file = open('/Users/seungwookim/ML/images/apartment_num_test1.jpg', 'rb')
     file = open('/Users/seungwookim/ML/images/apartment_num_test2.jpg', 'rb')
@@ -31,7 +32,7 @@ def method():
   num = request.form["num"]
   # Delivery Address
   # 해당 num을 가지고 navi에 보내면 됨!
-
+  print(num)
   return "POST로 전달된 배송 호 수 데이터({})".format(num)
 
 
