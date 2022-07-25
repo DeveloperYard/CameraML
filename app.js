@@ -3,12 +3,10 @@ const express = require('express');
 const fs = require('fs');
 const multer = require('multer');
 const cors = require('cors');
-const morgan = require('morgan')
-const _ = require('lodash')
+const morgan = require('morgan');
 const path = require('path');
 
 const {textDetect} = require('./textDetection');
-const { fstat } = require('fs');
 
 const app = express();
 
@@ -38,6 +36,7 @@ const app = express();
 // });
 
 const upload = multer({storage: multer.memoryStorage()});
+// 서버 측에 직접 저장하는게 아닌 메모리에서 처리해서 전달
 
 // 미들 웨어 추가
 app.use(cors());
