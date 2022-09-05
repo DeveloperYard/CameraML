@@ -13,7 +13,6 @@ async function textDetect(photo){
       const result = res[0].textAnnotations;
     
       // this.number = await result[0].description;
-      console.log(this.number);
 
       return result[0].description;
     // console.log('-----------------');

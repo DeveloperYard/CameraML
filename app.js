@@ -62,7 +62,7 @@ app.use((err, req, res, next)=>{
     console.error(err);
 })
 
-const port = 8080;
+const port = 3000;
 
 
 app.listen(port, () => {
