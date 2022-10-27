@@ -18,7 +18,7 @@ router.get('/login', (req, res, next)=>{
 })
 router.post('/login', authController.login);
 
-router.get('/member', authController.getUserInfo);
+router.get('/user', authController.getUserInfo);
 // 필요한 것, 유저 정보 수정 by using patch method!
 
 module.exports = router;

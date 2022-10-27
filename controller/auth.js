@@ -44,13 +44,9 @@ async function login(req, res){
 }
 
 async function getUserInfo(req, res){
-  // 미들웨어를 통해 들어온 req.decoded를 이용해 유저의 정보를 추출해낼 수 있다.
-  const user = await User.findOne({_id: username}); 
-  if (!user){
-    return res.status(404).json({message: 'User not found'});
-  }
+  const users = await User.find(); 
   // 위에 기술한 것과 마찬가지로, req.token 또한 미들웨어에서 지정해줬기 때문에 이용할 수 있다!
-  res.status(200).json({user: user});
+  res.status(200).json({userlist: users});
 }
 
 module.exports = {signup, getUserInfo, login};
