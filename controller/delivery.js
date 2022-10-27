@@ -8,7 +8,7 @@ async function getRecord(req, res){
   res.status(200).json({data : list});
 }
 
-async function testCreate(req, res){
+async function create(req, res){
   const rec = new Delivery({
     targetPlace: req.body.targetPlace
   });
@@ -17,4 +17,4 @@ async function testCreate(req, res){
   res.status(200).redirect('/delivery');
 }
 
-module.exports = {getRecord, testCreate};
+module.exports = {getRecord, create};

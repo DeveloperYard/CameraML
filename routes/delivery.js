@@ -6,7 +6,7 @@ const dirname = path.resolve();
 router.get('/', (req, res, next)=>{
   res.status(200).sendFile(dirname + '/templates/deliveryPage.html');
 })
-router.post('/', deliController.testCreate);
+router.post('/', deliController.create);
 router.get('/record', deliController.getRecord);
 
 module.exports = router;
