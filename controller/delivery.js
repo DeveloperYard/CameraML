@@ -1,7 +1,7 @@
 const Delivery = require('../models/record');
 
 async function getRecord(req, res){
-  const list = await Delivery.find().where('targetPlace');
+  const list = await Delivery.find().select('targetPlace createdAt -_id');
   if (!list){
     res.status(201).json({message: 'not yet delivery information'});
   }
