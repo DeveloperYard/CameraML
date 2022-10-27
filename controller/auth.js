@@ -1,5 +1,5 @@
 const User = require('../models/users.js');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const bcryptSaltRounds = 12; // Bcrypt salt 지정값
 
 async function signup(req, res){
