@@ -7,6 +7,7 @@ router.get('/', (req, res, next)=>{
   res.status(200).sendFile(dirname + '/templates/deliveryPage.html');
 })
 router.post('/', deliController.create);
-router.get('/record', deliController.getRecord);
-
+// url 고려! 배송지 받아올 것
+router.get('/dest', deliController.getRecordNotDelivered);
+router.get('/log', deliController.getRecord);
 module.exports = router;

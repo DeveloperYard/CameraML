@@ -14,7 +14,18 @@ async function create(req, res){
   });
 
   await rec.save();
-  res.status(200).redirect('/delivery');
+  res.status(201).redirect('/delivery');
 }
 
-module.exports = {getRecord, create};
+async function getRecordNotDelivered(req, res){
+  const notDeliveredPlace = await Delivery.findOne({deliveryStatus: false});
+  if (notDeliveredPlace){
+    await Delivery.updateOne({_id: notDeliveredPlace._id}, {deliveryStatus: true});
+    return res.status(200).json({targetPlace: notDeliveredPlace.targetPlace});  
+  }
+  else {
+    return res.status(200).json({});
+  }
+}
+
+module.exports = {getRecord, create, getRecordNotDelivered};
