@@ -1,11 +1,11 @@
 const Delivery = require('../models/record');
 
 async function getRecord(req, res){
-  const list = await Delivery.find().select('targetPlace createdAt -_id');
+  const list = await Delivery.find().select('targetPlace createdAt deliveryStatus -_id');
   if (!list){
-    res.status(201).json({message: 'not yet delivery information'});
+    return res.status(201).json({message: 'not yet delivery information'});
   }
-  res.status(200).json({data : list});
+  return res.status(200).json({data : list});
 }
 
 async function create(req, res){
@@ -14,7 +14,7 @@ async function create(req, res){
   });
 
   await rec.save();
-  res.status(201).redirect('/delivery');
+  return res.status(201).redirect('/delivery');
 }
 
 async function getRecordNotDelivered(req, res){

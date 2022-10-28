@@ -1,6 +1,6 @@
 import requests
 
-url = 'http://localhost:3000/delivery/dest'
+url = 'http://3.35.176.216:3000/delivery/dest'
 
 r = requests.get(url)
 
