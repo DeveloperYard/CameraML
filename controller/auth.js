@@ -43,10 +43,10 @@ async function login(req, res){
   res.status(200).redirect('/auth/main');
 }
 
-async function getUserInfo(req, res){
-  const users = await User.find().select('username nickname -_id'); 
-  // 위에 기술한 것과 마찬가지로, req.token 또한 미들웨어에서 지정해줬기 때문에 이용할 수 있다!
-  res.status(200).json({userlist: users});
-}
+// async function getUserInfo(req, res){
+//   const users = await User.find().select('username nickname -_id'); 
+//   // 위에 기술한 것과 마찬가지로, req.token 또한 미들웨어에서 지정해줬기 때문에 이용할 수 있다!
+//   res.status(200).json({userlist: users});
+// }
 
-module.exports = {signup, getUserInfo, login};
+module.exports = {signup, login};
