@@ -1,0 +1,22 @@
+</head>
+<body>
+    <h1>배송 로그 조회 시스템</h1>
+    <table>
+        <th>index</th>
+        <th>목표 배송지</th>
+        <th>배송 여부</th>
+        <th>등록 시간</th>
+        <% for(var i = 0; i<data.length; i++){ %>
+            <tr>
+                <td><%= i %></td>
+                <td><%= data[i].targetPlace %></td>
+                <td><%= data[i].deliveryStatus %></td>
+                <td><%= data[i].createdAt %></td>
+            </tr>
+        <% } %>
+    </table>
+    <form action="/delivery" method="get">
+      <input type="submit" value="뒤로 가기">
+    </form>
+</body>
+</html>

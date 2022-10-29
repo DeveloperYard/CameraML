@@ -22,6 +22,9 @@ app.use(morgan('dev'));
 app.use('/auth', authRouter);
 app.use('/delivery', deliveryRouter);
 
+app.set('view engine', 'ejs');
+app.set('views', './templates');
+
 app.get('/', (req, res, next)=>{
     res.status(200).sendFile(path.join(__dirname, '/templates/index.html'));
 })

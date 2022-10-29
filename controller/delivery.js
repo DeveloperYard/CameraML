@@ -1,11 +1,15 @@
 const Delivery = require('../models/record');
+const path = require('path');
+
+const dirname = path.resolve();
 
 async function getRecord(req, res){
   const list = await Delivery.find().select('targetPlace createdAt deliveryStatus -_id');
   if (!list){
     return res.status(201).json({message: 'not yet delivery information'});
   }
-  return res.status(200).json({data : list});
+  console.log(list);
+  return res.render(dirname + '/templates/logView', {data: list});
 }
 
 async function create(req, res){
